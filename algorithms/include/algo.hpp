@@ -31,6 +31,28 @@ const std::string input = R"(73167176531330624919225119674426574742355349194934
 std::string * run()
 {
     return new std::string("");
+
+    // Remove newlines from the input string
+    for (char c : input) {
+        if (std::isdigit(c)) {
+            num += c;
+        }
+    }
+
+    const int adjacent = 13;
+    long long max_product = 0;
+
+    for (size_t i = 0; i <= num.size() - adjacent; i++) {
+        long long product = 1;
+        for (int j = 0; j < adjacent; j++) {
+            product *= (num[i + j] - '0');
+        }
+        if (product > max_product) {
+            max_product = product;
+        }
+    }
+
+    return new std::string(std::to_string(max_product));
 }
     
 #endif // ALGO_H_
