@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.30)
+cmake_minimum_required(VERSION 3.16)
 project(Library)
 
 # Set C++ Standard
@@ -26,10 +26,12 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
+include_directories(${CMAKE_SOURCE_DIR}/include)
+
 add_executable(
   library_test
   test/unit_tests.cpp
-)
+ "src/Book.cpp" "src/User.cpp" "src/Library.cpp")
 
 target_link_libraries(
   library_test
